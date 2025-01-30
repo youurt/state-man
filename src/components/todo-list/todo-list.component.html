@@ -1,9 +1,7 @@
-<ul>
-  <li *ngFor="let todo of todos()">
-    <app-todo-item
-      [todo]="todo"
-      (toggleTodo)="toggleTodo.emit(todo.id)"
-      (removeTodo)="removeTodo.emit(todo.id)"
-    />
-  </li>
-</ul>
+@for (todo of todos(); track $index) {
+<app-todo-item
+  [todo]="todo"
+  (toggleTodo)="toggleTodo.emit(todo.id)"
+  (removeTodo)="removeTodo.emit(todo.id)"
+/>
+}
