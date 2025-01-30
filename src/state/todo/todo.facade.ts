@@ -5,21 +5,21 @@ import { TodoStore } from './todo.store';
 export class TodoStoreFacade {
   #store = inject(TodoStore);
 
-  public readonly todos = this.#store.todos;
+  readonly todos = this.#store.todos;
 
-  public readonly loading = this.#store.loading;
+  readonly loading = this.#store.loading;
 
-  public readonly error = this.#store.error;
+  readonly error = this.#store.error;
 
-  public loadTodos() {
+  loadTodos() {
     this.#store.loadTodos();
   }
 
-  public toggleTodo(id: number) {
+  toggleTodo(id: number) {
     this.#store.toggleTodo(id);
   }
 
-  public removeTodo(id: number) {
+  removeTodo(id: number) {
     this.#store.removeTodo(id);
   }
 }

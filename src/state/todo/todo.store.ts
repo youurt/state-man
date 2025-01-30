@@ -14,9 +14,9 @@ import { withRemoveTodo } from './remove-todo.feature';
 import { LoginService } from 'src/services/login.service';
 
 export type TodoState = {
-  todos: Todo[];
-  loading: boolean;
-  error: string | null;
+  readonly todos: Todo[];
+  readonly loading: boolean;
+  readonly error: string | null;
 };
 
 const initialState: TodoState = {

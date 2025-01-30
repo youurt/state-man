@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
   todosLoading = this.#todoFacade.loading;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.#todoFacade.loadTodos();
   }
 
