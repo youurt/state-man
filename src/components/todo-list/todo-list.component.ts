@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { Todo } from 'src/models/todo.model';
-import { TodoItemComponent } from 'src/todo-item/todo-item.component';
+import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 @Component({
   imports: [NgFor, TodoItemComponent],

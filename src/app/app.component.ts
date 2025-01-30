@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { TodoStoreFacade } from 'src/state/signal/todo.facade';
-import { TodoListComponent } from 'src/todo-list/todo-list.component';
+import { TodoStoreFacade } from 'src/state/todo/todo.facade';
+import { TodoListComponent } from '../components/todo-list/todo-list.component';
 
 @Component({
   imports: [TodoListComponent],

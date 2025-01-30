@@ -1,10 +1,19 @@
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { inject } from '@angular/core';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withHooks,
+  withMethods,
+  withProps,
+  withState,
+} from '@ngrx/signals';
 import { Todo } from 'src/models/todo.model';
 import { TodoService } from 'src/services/todo.service';
+import { withRemoveTodo } from './remove-todo.feature';
+import { LoginService } from 'src/services/login.service';
 
-type TodoState = {
+export type TodoState = {
   todos: Todo[];
   loading: boolean;
   error: string | null;
@@ -18,11 +27,21 @@ const initialState: TodoState = {
 
 export const TodoStore = signalStore(
   { providedIn: 'root' },
-  withState(initialState),
+  withState<TodoState>(initialState),
   withDevtools('TodoStore'),
-  withMethods((store, todoService = inject(TodoService)) => ({
+  withProps(() => ({
+    todoService: inject(TodoService),
+    loginService: inject(LoginService),
+  })),
+  withHooks({
+    onInit(store) {
+      store.loginService.login();
+    },
+  }),
+  withRemoveTodo(),
+  withMethods((store) => ({
     loadTodos: async () => {
-      const todos = await todoService.getAllTodos();
+      const todos = await store.todoService.getAllTodos();
       patchState(store, (state) => ({
         ...state,
         todos,
@@ -36,13 +55,6 @@ export const TodoStore = signalStore(
         todos: state.todos.map((todo) =>
           todo.id === id ? { ...todo, completed: !todo.completed } : todo
         ),
-      }));
-    },
-    removeTodo: async (id: number) => {
-      await todoService.removeTodo(id);
-      patchState(store, (state) => ({
-        ...state,
-        todos: state.todos.filter((todo) => todo.id !== id),
       }));
     },
   }))
