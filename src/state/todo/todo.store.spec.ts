@@ -23,11 +23,11 @@ describe('TodoStore', () => {
       ],
     });
 
-    const store = TestBed.inject(TodoStore);
-    const todoService = TestBed.inject(TodoService);
-    const loginService = TestBed.inject(LoginService);
-
-    return { store, todoService, loginService };
+    return {
+      store: TestBed.inject(TodoStore),
+      todoService: TestBed.inject(TodoService),
+      loginService: TestBed.inject(LoginService),
+    };
   };
 
   const mockTodos: Todo[] = [
