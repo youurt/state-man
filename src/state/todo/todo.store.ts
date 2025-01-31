@@ -38,7 +38,6 @@ export const TodoStore = signalStore(
       store.loginService.login();
     },
   }),
-  withRemoveTodo(),
   withMethods((store) => ({
     loadTodos: async () => {
       patchState(store, { loading: true });
@@ -58,5 +57,6 @@ export const TodoStore = signalStore(
         ),
       }));
     },
-  }))
+  })),
+  withRemoveTodo()
 );
