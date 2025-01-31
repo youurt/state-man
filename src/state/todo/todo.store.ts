@@ -9,9 +9,9 @@ import {
   withState,
 } from '@ngrx/signals';
 import { Todo } from 'src/models/todo.model';
+import { LoginService } from 'src/services/login.service';
 import { TodoService } from 'src/services/todo.service';
 import { withRemoveTodo } from './remove-todo.feature';
-import { LoginService } from 'src/services/login.service';
 
 export type TodoState = {
   readonly todos: Todo[];
@@ -21,7 +21,7 @@ export type TodoState = {
 
 const initialState: TodoState = {
   todos: [],
-  loading: true,
+  loading: false,
   error: null,
 };
 
@@ -41,6 +41,7 @@ export const TodoStore = signalStore(
   withRemoveTodo(),
   withMethods((store) => ({
     loadTodos: async () => {
+      patchState(store, { loading: true });
       const todos = await store.todoService.getAllTodos();
       patchState(store, (state) => ({
         ...state,
