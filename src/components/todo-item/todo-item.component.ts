@@ -9,9 +9,9 @@ import { Todo } from 'src/models/todo.model';
   styleUrls: ['./todo-item.component.scss'],
 })
 export class TodoItemComponent {
-  todo = input<Todo>();
+  readonly todo = input<Todo>();
 
-  toggleTodo = output();
+  readonly toggleTodo = output();
 
-  removeTodo = output();
+  readonly removeTodo = output();
 }

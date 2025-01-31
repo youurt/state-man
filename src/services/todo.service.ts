@@ -7,9 +7,9 @@ import { Todo } from 'src/models/todo.model';
   providedIn: 'root',
 })
 export class TodoService {
-  #http = inject(HttpClient);
+  readonly #http = inject(HttpClient);
 
-  #apiUrl = 'https://jsonplaceholder.typicode.com/todos/';
+  readonly #apiUrl = 'https://jsonplaceholder.typicode.com/todos/';
 
   async getAllTodos() {
     return await firstValueFrom(

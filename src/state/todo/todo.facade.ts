@@ -3,7 +3,7 @@ import { TodoStore } from './todo.store';
 
 @Injectable({ providedIn: 'root' })
 export class TodoStoreFacade {
-  #store = inject(TodoStore);
+  readonly #store = inject(TodoStore);
 
   readonly todos = this.#store.todos;
 

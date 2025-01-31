@@ -9,11 +9,11 @@ import { TodoListComponent } from '../components/todo-list/todo-list.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  #todoFacade = inject(TodoStoreFacade);
+  readonly #todoFacade = inject(TodoStoreFacade);
 
-  todos = this.#todoFacade.todos;
+  readonly todos = this.#todoFacade.todos;
 
-  todosLoading = this.#todoFacade.loading;
+  readonly todosLoading = this.#todoFacade.loading;
 
   ngOnInit() {
     this.#todoFacade.loadTodos();

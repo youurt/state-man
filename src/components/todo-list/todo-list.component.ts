@@ -9,9 +9,9 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent {
-  todos = input<Todo[]>([]);
+  readonly todos = input<Todo[]>([]);
 
-  toggleTodo = output<number>();
+  readonly toggleTodo = output<number>();
 
-  removeTodo = output<number>();
+  readonly removeTodo = output<number>();
 }

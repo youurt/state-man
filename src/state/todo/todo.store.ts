@@ -19,7 +19,7 @@ export type TodoState = {
   readonly error: string | null;
 };
 
-const initialState: TodoState = {
+export const initialState: TodoState = {
   todos: [],
   loading: false,
   error: null,
