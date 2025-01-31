@@ -5,13 +5,13 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
-  let todoFacadeMock: TodoFacadeMock;
+  let todoFacade: TodoFacadeMock;
 
   beforeEach(() => {
-    todoFacadeMock = createTodoFacadeMock();
+    todoFacade = createTodoFacadeMock();
 
     TestBed.configureTestingModule({
-      providers: [{ provide: TodoStoreFacade, useValue: todoFacadeMock }],
+      providers: [{ provide: TodoStoreFacade, useValue: todoFacade }],
     }).compileComponents();
 
     const fixture = TestBed.createComponent(AppComponent);
@@ -24,18 +24,18 @@ describe('AppComponent', () => {
 
   it('should call loadTodos on ngOnInit', () => {
     component.ngOnInit();
-    expect(todoFacadeMock.loadTodos).toHaveBeenCalled();
+    expect(todoFacade.loadTodos).toHaveBeenCalled();
   });
 
   it('should call toggleTodo with correct id', () => {
     const id = 1;
     component.toggleTodo(id);
-    expect(todoFacadeMock.toggleTodo).toHaveBeenCalledWith(id);
+    expect(todoFacade.toggleTodo).toHaveBeenCalledWith(id);
   });
 
   it('should call removeTodo with correct id', () => {
     const id = 1;
     component.removeTodo(id);
-    expect(todoFacadeMock.removeTodo).toHaveBeenCalledWith(id);
+    expect(todoFacade.removeTodo).toHaveBeenCalledWith(id);
   });
 });
