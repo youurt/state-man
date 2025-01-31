@@ -1,20 +1,14 @@
-import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { createTodoFacadeMock, TodoFacadeMock } from 'src/state/todo/mocks';
 import { TodoStoreFacade } from 'src/state/todo/todo.facade';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
-  let todoFacadeMock: Partial<TodoStoreFacade>;
+  let todoFacadeMock: TodoFacadeMock;
 
   beforeEach(() => {
-    todoFacadeMock = {
-      todos: signal([]),
-      loading: signal(false),
-      loadTodos: jest.fn(),
-      toggleTodo: jest.fn(),
-      removeTodo: jest.fn(),
-    };
+    todoFacadeMock = createTodoFacadeMock();
 
     TestBed.configureTestingModule({
       providers: [{ provide: TodoStoreFacade, useValue: todoFacadeMock }],

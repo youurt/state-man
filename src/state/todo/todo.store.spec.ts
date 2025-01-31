@@ -2,6 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { Todo } from 'src/models/todo.model';
 import { LoginService } from 'src/services/login.service';
 import { TodoService } from 'src/services/todo.service';
+import {
+  createTodoServiceMock,
+  createLoginServiceMock,
+} from 'src/services/mocks';
 import { initialState, TodoStore } from './todo.store';
 
 describe('TodoStore', () => {
@@ -10,16 +14,11 @@ describe('TodoStore', () => {
       providers: [
         {
           provide: TodoService,
-          useValue: {
-            getAllTodos: jest.fn().mockReturnValue(Promise.resolve([])),
-            removeTodo: jest.fn().mockReturnValue(Promise.resolve()),
-          },
+          useValue: createTodoServiceMock(),
         },
         {
           provide: LoginService,
-          useValue: {
-            login: jest.fn(),
-          },
+          useValue: createLoginServiceMock(),
         },
       ],
     });
